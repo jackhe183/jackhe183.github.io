@@ -1,0 +1,7 @@
+---
+const { project, index = 0 } = Astro.props;
+---
+<a class="project" href={project.url}>
+  <div class="project-top"><span class="eyebrow">{project.category}</span><span aria-hidden="true">↗</span></div>
+  <span class="project-number">0{index + 1}</span><h3>{project.name}</h3><p>{project.summary}</p><span class="project-note">{project.note}</span>
+</a>

@@ -1,0 +1,6 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+<Layout title="Projects — Jack He / Lemon"><section class="page-heading"><p class="eyebrow">PROJECTS</p><h1>构建有用的东西。</h1><p>从 Agent 的搜索工具，到评测过程与证据的整理。<br />这些仓库记录了不同方向的探索。</p></section><div class="project-grid projects-page">{projects.map((project,index)=><ProjectCard project={project} index={index}/>)}</div><p class="source-note">项目说明依据公开仓库 README 整理。具体功能与使用方式请以仓库为准。LLMprobe-engine 为 fork，原项目来自 <a href="https://github.com/Bazaarlinkorg/LLMprobe-engine">Bazaarlinkorg ↗</a>。</p></Layout>
