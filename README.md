@@ -43,10 +43,12 @@ draft: false
 
 仓库 Settings → Pages → Source 选择 GitHub Actions。合并到 `main` 或手动触发 Deploy to GitHub Pages 后，会自动构建并部署。PR 会进行构建检查。
 
-默认地址：https://jackhe183.github.io/
+正式地址：https://jackhe.top/
+
+GitHub Pages 原始地址：https://jackhe183.github.io/（绑定自定义域名后会跳转）。
 
 维护流程：创建内容分支 → 修改 → 本地 build → 提交 PR → 检查通过 → 合并。
 
-自定义域名需先取得 DNS 修改确认。配置后，将 `astro.config.mjs` 的 `site` 改为 `https://jackhe.top`。Actions 部署的域名由仓库 Pages 设置管理，无需依赖 CNAME 文件。保留 DNS 完整备份，按确认的清单操作。
+已获授权将自定义域名绑定为 `jackhe.top`，`astro.config.mjs` 的 `site` 已设为 `https://jackhe.top`。DNS 迁移与 HTTPS 签发需单独验证。Actions 部署的域名由仓库 Pages 设置管理，无需依赖 CNAME 文件。保留 DNS 完整备份，按确认的清单操作。
 
 参考：[Astro 官方部署指南](https://docs.astro.build/en/guides/deploy/github/)。

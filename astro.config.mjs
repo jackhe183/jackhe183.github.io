@@ -1,2 +1,2 @@
 import { defineConfig } from 'astro/config';
-export default defineConfig({ site: 'https://jackhe183.github.io', output: 'static', trailingSlash: 'always' });
+export default defineConfig({ site: 'https://jackhe.top', output: 'static', trailingSlash: 'always' });
