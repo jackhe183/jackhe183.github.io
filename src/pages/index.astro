@@ -6,25 +6,20 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('writing', ({data}) => !data.draft)).sort((a,b) => b.data.date.valueOf()-a.data.date.valueOf()).slice(0,3);
 ---
 <Layout>
-  <section class="hero">
+  <section class="personal-hero">
     <div class="hero-copy">
-      <p class="eyebrow">HELLO, I'M JACK HE / LEMON</p>
-      <h1>让 AI 的能力，<br />经得起<span class="highlight">检验。</span></h1>
-      <p class="role">{profile.role}</p>
-      <p class="intro">构建评测工具，探索模型可靠性，<br />也记录实践中的问题与发现。</p>
-      <div class="actions"><a class="button" href="/projects/">探索项目 <span>↗</span></a><a class="text-link" href="/about/">关于我 →</a></div>
+      <p class="eyebrow">{profile.role}</p>
+      <h1>{profile.home.greeting}</h1>
+      <p class="alias-line">{profile.home.aliasLine}</p>
+      <p class="intro">{profile.home.intro}</p>
+      <div class="actions"><a class="button" href="/projects/">查看项目 <span aria-hidden="true">→</span></a><a class="text-link" href="/about/">认识我 →</a></div>
     </div>
-    <div class="lemon-art" aria-hidden="true"><span class="orbit-label">CURIOSITY → BUILD → EVALUATE</span><span class="lemon">🍋</span><span class="art-caption">A little curiosity.<br />A lot of questions.</span><span class="art-cross">+</span></div>
+    <figure class="portrait"><img src={profile.avatar} alt={profile.avatarAlt} width="300" height="300" fetchpriority="high" /><figcaption>{profile.name}<span> / {profile.alias}</span></figcaption></figure>
   </section>
-  <div class="home-overview">
-    <section class="home-work" aria-labelledby="selected-heading">
-      <div class="overview-heading"><p class="eyebrow">SELECTED WORK</p><h2 id="selected-heading">精选项目</h2><a class="text-link" href="/projects/">查看项目与用途 →</a></div>
-      <div class="selected-list">{projects.filter(p=>p.featured).map((project,index)=><a class="selected-project" href={`/projects/#${project.name}`}><span class="selected-number">0{index+1}</span><div><h3>{project.name}</h3><p>{project.teaser}</p></div><span class="row-arrow" aria-hidden="true">↗</span></a>)}</div>
-    </section>
-    <section class="home-writing" aria-labelledby="latest-heading">
-      <div class="overview-heading"><p class="eyebrow">LATEST WRITING</p><h2 id="latest-heading">最近的记录</h2></div>
-      {posts.length ? <div class="latest-list">{posts.map(post=><a class="latest-post" href={`/writing/${post.id}/`}><time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0,10)}</time><h3>{post.data.title}</h3><p>{post.data.description}</p></a>)}</div> : <p class="writing-status">文章正在整理。发布后，最新的记录会出现在这里。</p>}
-      <a class="text-link" href="/writing/">进入 Writing →</a>
-    </section>
-  </div>
+  <section class="selected-section" aria-labelledby="selected-heading">
+    <div class="section-heading"><div><p class="eyebrow">SELECTED PROJECTS</p><h2 id="selected-heading">做过的项目</h2><p class="section-intro">{profile.home.projectIntro}</p></div><a class="text-link" href="/projects/">查看全部项目 →</a></div>
+    <div class="selected-list">{projects.filter(p=>p.featured).map((project,index)=><a class="selected-project" href={`/projects/#${project.name}`}><span class="selected-number">0{index+1}</span><div><h3>{project.name}</h3><p>{project.teaser}</p></div><span class="row-arrow" aria-hidden="true">→</span></a>)}</div>
+  </section>
+  {posts.length > 0 && <section class="latest-section" aria-labelledby="latest-heading"><div class="section-heading"><div><p class="eyebrow">WRITING</p><h2 id="latest-heading">最新文章</h2></div><a class="text-link" href="/writing/">全部文章 →</a></div><div class="latest-list">{posts.map(post=><a class="latest-post" href={`/writing/${post.id}/`}><time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0,10)}</time><h3>{post.data.title}</h3><p>{post.data.description}</p></a>)}</div></section>}
+  <section class="contact-strip"><div><h2>聊聊评测与工具。</h2><p>{profile.contact.intro}</p></div><a class="text-link" href={profile.contact.email ? `mailto:${profile.contact.email}` : profile.github}>{profile.contact.email ? '邮件联系 →' : '在 GitHub 找到我 ↗'}</a></section>
 </Layout>

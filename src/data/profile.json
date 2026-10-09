@@ -1,0 +1,42 @@
+{
+  "name": "Jack He",
+  "alias": "Lemon",
+  "role": "AI Evaluation Engineer · Builder · Writer",
+  "description": "关注 AI 评测、模型可靠性、LLM API、Agent 和开发者工具。",
+  "avatar": "/avatar.jpg",
+  "avatarAlt": "Jack He 的 Lemon 头像",
+  "home": {
+    "greeting": "你好，我是 Jack He。",
+    "aliasLine": "也可以叫我 Lemon。",
+    "intro": "我关注 AI 评测与模型可靠性，也构建 LLM API、Agent 和开发者工具相关项目。",
+    "projectIntro": "从多轮对话测评，到评测证据浏览和搜索接入。"
+  },
+  "about": {
+    "intro": [
+      "我是 Jack He，Lemon 是我在这里使用的名字。",
+      "我关注 AI 评测、模型可靠性、LLM API、Agent 和开发者工具。这个网站用于分享项目与技术记录。"
+    ],
+    "background": [
+      "本科毕业于浙江工业大学。"
+    ],
+    "focus": [
+      {
+        "title": "AI 评测",
+        "description": "测试如何设计，结果如何解释，证据如何保留。"
+      },
+      {
+        "title": "模型可靠性",
+        "description": "API 的实际输出、能力边界与行为是否一致。"
+      },
+      {
+        "title": "Agent 与开发者工具",
+        "description": "多轮对话、工具调用，以及检索和评测结果的整理。"
+      }
+    ]
+  },
+  "contact": {
+    "intro": "欢迎交流 AI 评测方法、模型可靠性和工具设计。",
+    "email": "jackhe18368008849@gmail.com"
+  },
+  "github": "https://github.com/jackhe183"
+}

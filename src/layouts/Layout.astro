@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { profile } from '../data/profile';
 const { title = 'Jack He / Lemon', description = profile.description } = Astro.props;
 const path = Astro.url.pathname;
-const links = [['/', 'Home'], ['/projects/', 'Projects'], ['/writing/', 'Writing'], ['/about/', 'About']];
+const links = [['/', '首页'], ['/projects/', '项目'], ['/writing/', '文章'], ['/about/', '关于我']];
 const canonical = new URL(path, Astro.site);
 ---
 <!doctype html>
@@ -11,7 +11,7 @@ const canonical = new URL(path, Astro.site);
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title><meta name="description" content={description} /><link rel="canonical" href={canonical} />
-  <meta name="color-scheme" content="light dark" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="color-scheme" content="light dark" /><link rel="icon" type="image/jpeg" href={profile.avatar} />
   <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:type" content="website" />
   <script is:inline>
     try { const t = localStorage.getItem('theme'); if(t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch {}
@@ -20,12 +20,12 @@ const canonical = new URL(path, Astro.site);
 <body>
   <a class="skip" href="#main">跳转到正文</a>
   <header class="header wrap">
-    <a class="brand" href="/" aria-label="Jack He 首页"><span aria-hidden="true">🍋</span> Jack He<span class="brand-alias"> / Lemon</span></a>
+    <a class="brand" href="/" aria-label={`${profile.name} 首页`}><img class="brand-avatar" src={profile.avatar} alt="" width="32" height="32" />{profile.name}<span class="brand-alias"> / {profile.alias}</span></a>
     <nav aria-label="主导航">{links.map(([href,label]) => <a href={href} aria-current={(href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined}>{label}</a>)}</nav>
     <button class="theme" aria-label="切换深色模式" title="切换深色模式" type="button"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4a8 8 0 0 0 0 16Z" fill="currentColor"/></svg></button>
   </header>
   <main id="main" class="wrap"><slot /></main>
-  <footer class="footer wrap"><a class="brand" href="/">🍋 Jack He</a><p>持续构建，持续记录。</p><a href={profile.github}>GitHub ↗</a><span>© {new Date().getFullYear()} Jack He</span></footer>
+  <footer class="footer wrap"><a class="brand" href="/"><img class="brand-avatar" src={profile.avatar} alt="" width="24" height="24" />{profile.name}</a><p>持续构建，持续记录。</p><a href={profile.github}>GitHub ↗</a><span>© {new Date().getFullYear()} Jack He</span></footer>
   <script>
     const button = document.querySelector<HTMLButtonElement>('.theme');
     const dark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
