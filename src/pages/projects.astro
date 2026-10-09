@@ -1,6 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/projects';
 ---
-<Layout title="Projects — Jack He / Lemon"><section class="page-heading"><p class="eyebrow">PROJECTS</p><h1>构建有用的东西。</h1><p>从 Agent 的搜索工具，到评测过程与证据的整理。<br />这些仓库记录了不同方向的探索。</p></section><div class="project-grid projects-page">{projects.map((project,index)=><ProjectCard project={project} index={index}/>)}</div><p class="source-note">项目说明依据公开仓库 README 整理。具体功能与使用方式请以仓库为准。LLMprobe-engine 为 fork，原项目来自 <a href="https://github.com/Bazaarlinkorg/LLMprobe-engine">Bazaarlinkorg ↗</a>。</p></Layout>
+<Layout title="Projects — Jack He / Lemon">
+  <section class="page-heading"><p class="eyebrow">PROJECTS</p><h1>工具如何解决问题。</h1><p>搜索接入、多轮对话测评、评测证据浏览与 API 探针。<br />在这里查看每个项目的用途与功能，再进入仓库了解实现。</p></section>
+  <div class="project-details">{projects.map((project,index)=><article class="project-detail" id={project.name}>
+    <div class="project-identity"><p class="eyebrow">0{index+1} / {project.category}</p><h2>{project.name}</h2><p class="project-note">{project.note}</p><a class="text-link" href={project.url}>查看 GitHub 仓库 ↗</a></div>
+    <div class="project-description"><h3>用途</h3><p>{project.purpose}</p><h3>提供什么</h3><ul>{project.capabilities.map(item=><li>{item}</li>)}</ul>{project.name === 'zoda-kina-explorer' && <p class="project-limit">延迟视图表示当次运行的观测值；并发、重试和端点条件会影响结果。</p>}{project.name === 'LLMprobe-engine' && <p class="project-limit">此仓库是 fork。上游项目：<a href="https://github.com/Bazaarlinkorg/LLMprobe-engine">Bazaarlinkorg/LLMprobe-engine ↗</a>。</p>}</div>
+  </article>)}</div>
+  <p class="source-note">项目说明依据公开仓库 README 整理。具体功能、配置和使用方法请以仓库为准。</p>
+</Layout>

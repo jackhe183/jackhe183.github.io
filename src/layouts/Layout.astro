@@ -22,7 +22,7 @@ const canonical = new URL(path, Astro.site);
   <header class="header wrap">
     <a class="brand" href="/" aria-label="Jack He 首页"><span aria-hidden="true">🍋</span> Jack He<span class="brand-alias"> / Lemon</span></a>
     <nav aria-label="主导航">{links.map(([href,label]) => <a href={href} aria-current={(href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined}>{label}</a>)}</nav>
-    <button class="theme" aria-label="切换深色模式" title="切换深色模式" type="button">◐</button>
+    <button class="theme" aria-label="切换深色模式" title="切换深色模式" type="button"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4a8 8 0 0 0 0 16Z" fill="currentColor"/></svg></button>
   </header>
   <main id="main" class="wrap"><slot /></main>
   <footer class="footer wrap"><a class="brand" href="/">🍋 Jack He</a><p>持续构建，持续记录。</p><a href={profile.github}>GitHub ↗</a><span>© {new Date().getFullYear()} Jack He</span></footer>
