@@ -1,4 +1,4 @@
-# Jack He / Lemon 🍋
+# Jack He / Lemon
 
 个人网站。Astro 静态构建，Markdown 管理文章，GitHub Actions 自动部署至 GitHub Pages。无数据库或付费服务。
 
@@ -21,9 +21,9 @@ npm run preview
 
 ## 修改内容
 
-- 个人定位：`src/data/profile.ts`；首页文案：`src/pages/index.astro`。
-- 个人背景和联系方式：`src/pages/about.astro`。首版只提供 GitHub 联系入口，未虚构履历或邮箱。
-- 项目：`src/data/projects.ts`。`teaser` 用于首页简短列表，`purpose` 与 `capabilities` 用于 Projects 的用途和功能说明。首页链接到 Projects 中对应项目的锚点。LLMprobe-engine 是 fork，必须保留上游标注。
+- 头像、定位、首页文案、背景和邮箱：`src/data/profile.json`。头像原图：`public/avatar.jpg`。
+- 页面内容职责和逐项操作方法见 [内容维护指南](CONTENT_GUIDE.md)。未填写的可选内容自动隐藏。
+- 项目：`src/data/projects.json`。`teaser` 用于首页简短列表，`purpose` 与 `capabilities` 用于 Projects 的用途和功能说明。首页链接到 Projects 中对应项目的锚点。LLMprobe-engine 是 fork，必须保留上游标注。
 - 文章：在 `src/content/writing/` 新建 `.md` 文件，使用以下 frontmatter。文件名生成文章 URL。
 
 ```yaml
