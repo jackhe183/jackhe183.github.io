@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+import { profile } from '../data/profile';
+const { title = 'Jack He / Lemon', description = profile.description } = Astro.props;
+const path = Astro.url.pathname;
+const links = [['/', 'Home'], ['/projects/', 'Projects'], ['/writing/', 'Writing'], ['/about/', 'About']];
+const canonical = new URL(path, Astro.site);
+---
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title><meta name="description" content={description} /><link rel="canonical" href={canonical} />
+  <meta name="color-scheme" content="light dark" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:type" content="website" />
+  <script is:inline>
+    try { const t = localStorage.getItem('theme'); if(t === 'dark' || t === 'light') document.documentElement.dataset.theme = t; } catch {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">跳转到正文</a>
+  <header class="header wrap">
+    <a class="brand" href="/" aria-label="Jack He 首页"><span aria-hidden="true">🍋</span> Jack He<span class="brand-alias"> / Lemon</span></a>
+    <nav aria-label="主导航">{links.map(([href,label]) => <a href={href} aria-current={(href === '/' ? path === '/' : path.startsWith(href)) ? 'page' : undefined}>{label}</a>)}</nav>
+    <button class="theme" aria-label="切换深色模式" title="切换深色模式" type="button">◐</button>
+  </header>
+  <main id="main" class="wrap"><slot /></main>
+  <footer class="footer wrap"><a class="brand" href="/">🍋 Jack He</a><p>持续构建，持续记录。</p><a href={profile.github}>GitHub ↗</a><span>© {new Date().getFullYear()} Jack He</span></footer>
+  <script>
+    const button = document.querySelector<HTMLButtonElement>('.theme');
+    const dark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    const sync = () => button?.setAttribute('aria-label', dark() ? '切换浅色模式' : '切换深色模式');
+    sync();
+    button?.addEventListener('click', () => { const theme = dark() ? 'light' : 'dark'; document.documentElement.dataset.theme = theme; try { localStorage.setItem('theme', theme); } catch {} sync(); });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', sync);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+export const profile = { name: 'Jack He', alias: 'Lemon', role: 'AI Evaluation Engineer · Builder · Writer', description: '关注 AI 评测、模型可靠性、LLM API、Agent 和开发者工具。', github: 'https://github.com/jackhe183' };

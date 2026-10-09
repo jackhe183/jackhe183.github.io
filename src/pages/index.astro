@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { profile } from '../data/profile';
+import { projects } from '../data/projects';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('writing', ({data}) => !data.draft)).sort((a,b) => b.data.date.valueOf()-a.data.date.valueOf()).slice(0,3);
+---
+<Layout>
+  <section class="hero">
+    <div class="hero-copy"><p class="eyebrow">HELLO, I'M JACK HE / LEMON</p><h1>让 AI 的能力，<br />经得起<span class="highlight">检验。</span></h1><p class="role">{profile.role}</p><p class="intro">{profile.description}<br />这里记录我的项目、问题和探索。</p><div class="actions"><a class="button" href="/projects/">看看我在做什么 <span>↗</span></a><a class="text-link" href="/about/">认识我 →</a></div></div>
+    <div class="lemon-art" aria-hidden="true"><span class="orbit-label">CURIOSITY → BUILD → EVALUATE</span><span class="lemon">🍋</span><span class="art-caption">A little curiosity.<br />A lot of questions.</span><span class="art-cross">+</span></div>
+  </section>
+  <section class="section"><div class="section-heading"><div><p class="eyebrow">SELECTED WORK</p><h2>把问题变成工具。</h2></div><a class="text-link" href="/projects/">全部项目 →</a></div><div class="project-grid">{projects.filter(p=>p.featured).map((project,index)=><ProjectCard project={project} index={index}/>)}</div></section>
+  <section class="section writing-section"><div class="section-heading"><div><p class="eyebrow">WRITING & NOTES</p><h2>在构建中思考。</h2></div><a class="text-link" href="/writing/">全部文章 →</a></div>{posts.length ? posts.map(post => <a class="post-row" href={`/writing/${post.id}/`}><h3>{post.data.title}</h3><p>{post.data.description}</p><span>→</span></a>) : <div class="empty-writing"><span class="eyebrow">笔记正在整理</span><p>AI 评测、模型可靠性与开发者工具。<br />新的文章会出现在这里。</p><a class="text-link" href="/writing/">前往 Writing →</a></div>}</section>
+  <section class="closing"><p class="eyebrow">LET'S CONNECT</p><h2>交流问题，也交流想法。</h2><p>如果你也关注 AI 评测和开发者工具，欢迎在 GitHub 交流。</p><a class="text-link" href={profile.github}>找到我 ↗</a></section>
+</Layout>

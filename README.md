@@ -1,2 +1,52 @@
-# jackhe183.github.io
-Jack He / Lemon — AI Evaluation Engineer, Builder, Writer
+# Jack He / Lemon 🍋
+
+个人网站。Astro 静态构建，Markdown 管理文章，GitHub Actions 自动部署至 GitHub Pages。无数据库或付费服务。
+
+## 本地开发
+
+需要 Node >=22.12.0，推荐 Node 24。
+
+```sh
+nvm use
+npm ci
+npm run dev
+```
+
+打开终端输出的本地地址（默认 http://localhost:4321）。
+
+```sh
+npm run build
+npm run preview
+```
+
+## 修改内容
+
+- 个人定位：`src/data/profile.ts`；首页文案：`src/pages/index.astro`。
+- 个人背景和联系方式：`src/pages/about.astro`。首版只提供 GitHub 联系入口，未虚构履历或邮箱。
+- 项目：`src/data/projects.ts`。LLMprobe-engine 是 fork，必须保留上游标注。
+- 文章：在 `src/content/writing/` 新建 `.md` 文件，使用以下 frontmatter。文件名生成文章 URL。
+
+```yaml
+---
+title: "文章标题"
+description: "一句话摘要"
+date: 2026-10-09
+draft: false
+---
+```
+
+正文支持 Markdown。`draft: true` 不生成文章页面，也不显示在列表中。`first-note.md` 是未发布模板。首版不含虚构的已发布文章。当前未安装 MDX 集成，后续有交互内容需求时可添加官方 `@astrojs/mdx`。
+
+- 样式：`src/styles/global.css`。主题默认跟随系统，手动选择保存在浏览器本地。
+
+## 部署
+
+仓库 Settings → Pages → Source 选择 GitHub Actions。合并到 `main` 或手动触发 Deploy to GitHub Pages 后，会自动构建并部署。PR 会进行构建检查。
+
+默认地址：https://jackhe183.github.io/
+
+维护流程：创建内容分支 → 修改 → 本地 build → 提交 PR → 检查通过 → 合并。
+
+自定义域名需先取得 DNS 修改确认。配置后，将 `astro.config.mjs` 的 `site` 改为 `https://jackhe.top`。Actions 部署的域名由仓库 Pages 设置管理，无需依赖 CNAME 文件。保留 DNS 完整备份，按确认的清单操作。
+
+参考：[Astro 官方部署指南](https://docs.astro.build/en/guides/deploy/github/)。
